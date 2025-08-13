@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>5S Champion Monitoring System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>5S Champion Monitoring System</h1>
+    <div class="user-info">Welcome, Andy Lim (ET1 AB) | <a href="#">Logout</a></div>
+  </header>
+
+  <nav>
+    <button onclick="showSection('summary')">Weekly Summary</button>
+    <button onclick="showSection('submit')">Submit Activities</button>
+    <button onclick="showSection('leaderboard')">Leaderboard</button>
+  </nav>
+
+  <main>
+    <section id="summary">
+      <h2>Week 32, 2023</h2>
+      <p>Your Score: <strong>87%</strong> 🌟 Excellent! Keep up the good work!</p>
+      <h3>Department Ranking</h3>
+      <ul>
+        <li>Electrolysis Phase 1 AB – 87%</li>
+        <li>Anode Rodding Phase 1 Production – 82%</li>
+        <li>Fume Treatment P1 – 79%</li>
+      </ul>
+    </section>
+
+    <section id="submit" style="display:none;">
+      <h2>Submit New Activity</h2>
+      <form>
+        <label>Activity Type:
+          <select>
+            <option>Sort</option>
+            <option>Set in Order</option>
+            <option>Shine</option>
+            <option>Standardize</option>
+            <option>Sustain</option>
+          </select>
+        </label><br/>
+        <label>Description:<br/>
+          <textarea rows="4" cols="50"></textarea>
+        </label><br/>
+        <label>Before Photo: <input type="file" /></label><br/>
+        <label>After Photo: <input type="file" /></label><br/>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
+    <section id="leaderboard" style="display:none;">
+      <h2>Leaderboard</h2>
+      <table>
+        <tr><th>Champion Name</th><th>Department</th><th>Score</th></tr>
+        <tr><td>Andy Lim Jui Lang</td><td>Electrolysis Phase 1 AB</td><td>87%</td></tr>
+        <tr><td>Champion 2</td><td>Anode Rodding</td><td>82%</td></tr>
+        <tr><td>Champion 3</td><td>Fume Treatment</td><td>79%</td></tr>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2023 5S Champion Monitoring System | All data is stored locally</p>
+  </footer>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll("main section").forEach(sec => sec.style.display = "none");
+      document.getElementById(id).style.display = "block";
+    }
+  </script>
+</body>
+</html>
