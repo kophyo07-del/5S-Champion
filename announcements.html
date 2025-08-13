@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Announcements</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>Announcements</h2>
+  <textarea id="announcement" rows="4" cols="50" placeholder="Type your announcement here..."></textarea><br/>
+  <button onclick="postAnnouncement()">Post</button>
+  <h3>Latest:</h3>
+  <div id="latest"></div>
+  <script>
+    function postAnnouncement() {
+      const msg = document.getElementById('announcement').value;
+      localStorage.setItem('announcement', msg);
+      showAnnouncement();
+    }
+    function showAnnouncement() {
+      const msg = localStorage.getItem('announcement') || 'No announcements yet.';
+      document.getElementById('latest').innerText = msg;
+    }
+    showAnnouncement();
+  </script>
+</body>
+</html>

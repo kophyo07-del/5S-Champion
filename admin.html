@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header><h1>Admin Dashboard</h1></header>
+  <main>
+    <button onclick="exportPDF()">Export Leaderboard as PDF</button>
+    <button onclick="clearData()">Clear All Data</button>
+    <table id="leaderboard">
+      <tr><th>Name</th><th>Department</th><th>Score</th></tr>
+    </table>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    const champions = JSON.parse(localStorage.getItem('champions') || '[]');
+    const table = document.getElementById('leaderboard');
+    champions.forEach(c => {
+      const row = table.insertRow();
+      row.innerHTML = `<td>${c.name}</td><td>${c.dept}</td><td>${c.score}</td>`;
+    });
+
+    function exportPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.text("5S Champion Leaderboard", 10, 10);
+      let y = 20;
+      champions.forEach(c => {
+        doc.text(`${c.name} | ${c.dept} | ${c.score}`, 10, y);
+        y += 10;
+      });
+      doc.save("leaderboard.pdf");
+    }
+
+    function clearData() {
+      localStorage.clear();
+      alert("All data cleared.");
+      location.reload();
+    }
+  </script>
+</body>
+</html>

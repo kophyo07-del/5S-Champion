@@ -2,31 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>5S Champion Monitoring System</title>
+  <title>5S Champion Dashboard</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <h1>5S Champion Monitoring System</h1>
-    <div class="user-info">Welcome, Andy Lim (ET1 AB) | <a href="#">Logout</a></div>
+    <div class="user-info" id="welcome"></div>
   </header>
 
   <nav>
     <button onclick="showSection('summary')">Weekly Summary</button>
     <button onclick="showSection('submit')">Submit Activities</button>
     <button onclick="showSection('leaderboard')">Leaderboard</button>
+    <button onclick="showSection('announcements')">Announcements</button>
   </nav>
 
   <main>
     <section id="summary">
-      <h2>Week 32, 2023</h2>
-      <p>Your Score: <strong>87%</strong> 🌟 Excellent! Keep up the good work!</p>
+      <h2>Week 32, 2025</h2>
+      <p>Your Score: <strong>87%</strong> 🌟 Excellent! Keep it up!</p>
       <h3>Department Ranking</h3>
       <ul>
-        <li>Electrolysis Phase 1 AB – 87%</li>
-        <li>Anode Rodding Phase 1 Production – 82%</li>
-        <li>Fume Treatment P1 – 79%</li>
+        <li>🥇 Electrolysis Phase 1 AB – 87%</li>
+        <li>🥈 Anode Rodding Phase 1 Production – 82%</li>
+        <li>🥉 Fume Treatment P1 – 79%</li>
       </ul>
     </section>
 
@@ -55,15 +55,20 @@
       <h2>Leaderboard</h2>
       <table>
         <tr><th>Champion Name</th><th>Department</th><th>Score</th></tr>
-        <tr><td>Andy Lim Jui Lang</td><td>Electrolysis Phase 1 AB</td><td>87%</td></tr>
-        <tr><td>Champion 2</td><td>Anode Rodding</td><td>82%</td></tr>
-        <tr><td>Champion 3</td><td>Fume Treatment</td><td>79%</td></tr>
+        <tr><td>🥇 Andy Lim Jui Lang</td><td>Electrolysis Phase 1 AB</td><td>87%</td></tr>
+        <tr><td>🥈 Champion 2</td><td>Anode Rodding</td><td>82%</td></tr>
+        <tr><td>🥉 Champion 3</td><td>Fume Treatment</td><td>79%</td></tr>
       </table>
+    </section>
+
+    <section id="announcements" style="display:none;">
+      <h2>Latest Announcement</h2>
+      <div id="announcementBox">Loading...</div>
     </section>
   </main>
 
   <footer>
-    <p>© 2023 5S Champion Monitoring System | All data is stored locally</p>
+    <p>© 2025 5S Champion Monitoring System</p>
   </footer>
 
   <script>
@@ -71,6 +76,19 @@
       document.querySelectorAll("main section").forEach(sec => sec.style.display = "none");
       document.getElementById(id).style.display = "block";
     }
+
+    function loadWelcome() {
+      const name = localStorage.getItem('username') || 'Champion';
+      document.getElementById('welcome').innerHTML = `Welcome, ${name} | <a href="login.html">Logout</a>`;
+    }
+
+    function loadAnnouncement() {
+      const msg = localStorage.getItem('announcement') || 'No announcements yet.';
+      document.getElementById('announcementBox').innerText = msg;
+    }
+
+    loadWelcome();
+    loadAnnouncement();
   </script>
 </body>
 </html>
