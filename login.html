@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - 5S Champion</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login to 5S Champion System</h2>
+    <form onsubmit="handleLogin(event)">
+      <label>Username: <input type="text" id="username" required /></label><br/>
+      <label>Role:
+        <select id="role">
+          <option value="champion">5S Champion</option>
+          <option value="admin">Admin</option>
+        </select>
+      </label><br/>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+  <script>
+    function handleLogin(e) {
+      e.preventDefault();
+      const role = document.getElementById('role').value;
+      const username = document.getElementById('username').value;
+      localStorage.setItem('role', role);
+      localStorage.setItem('username', username);
+      window.location.href = role === 'admin' ? 'admin.html' : 'index.html';
+    }
+  </script>
+</body>
+</html>
